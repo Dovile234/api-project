@@ -1,0 +1,100 @@
+body {
+  background-color: rgb(240, 240, 240);
+  margin: 0;
+  color: rgb(49, 49, 49);
+}
+
+h1,
+h2,
+h3 {
+  color: rgb(29, 29, 29);
+}
+
+h2 {
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.header {
+  background-color: rgb(230, 230, 230);
+  margin: 0;
+  padding: 7px;
+}
+
+.nav {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.nav-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-list li {
+  list-style-type: none;
+}
+
+.nav-list li a {
+  text-decoration: none;
+  color: rgb(49, 49, 49);
+  font-size: 20px;
+}
+
+#page-content {
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.user-info p {
+  font-size: 20px;
+}
+
+#page-content a {
+  color: rgb(34, 34, 34);
+}
+
+.list-item {
+  list-style-type: none;
+  margin-bottom: 8px;
+  font-size: 18px;
+}
+
+.user-contacts {
+  padding-left: 15px;
+}
+
+h3 {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.posts-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  column-gap: 20px;
+  row-gap: 20px;
+  width: 100%;
+}
+
+.posts-wrapper div {
+  padding: 20px;
+  border: 2px solid rgb(102, 102, 102);
+}
+
+.posts-title {
+  text-align: center;
+}
+
+.user-albums ul {
+  padding-left: 0;
+}
+
+.user-albums ul li {
+  list-style-type: none;
+  margin-bottom: 8px;
+}
+
+.post-item {
+  text-decoration: none;
+}
