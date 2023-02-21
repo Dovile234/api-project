@@ -23,7 +23,7 @@ function createPostsListElement(posts) {
     const userName = post.user.name;
 
     const postItem = document.createElement("li");
-    postItem.classList.add("post-item");
+    postItem.classList.add("single-post");
 
     const postLink = document.createElement("a");
     postLink.textContent = toUpperCase(post.title);

@@ -12,7 +12,6 @@ async function getPost() {
   );
   const post = await res.json();
   const content = document.getElementById("page-content");
-  console.log(post);
 
   header();
 
@@ -28,12 +27,13 @@ async function getPost() {
   let link = document.createElement("a");
   link.textContent = "Other posts";
   link.href = `./posts.html?id=${post.userId}`;
+  link.style.marginLeft = "10px";
 
   let postEditLink = document.createElement("a");
   postEditLink.textContent = "Edit Post";
   postEditLink.href = `./edit-post.html?id=${id}`;
 
-  content.append(postTitle, user, postContent, comment, link, postEditLink);
+  content.append(postTitle, user, postContent, postEditLink, link, comment);
 }
 
 function getComments(comments) {

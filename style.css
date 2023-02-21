@@ -101,6 +101,9 @@ h3 {
 
 .post-item {
   text-decoration: none;
+  background-color: white;
+  padding: 15px;
+  margin-bottom: 30px;
 }
 
 .comments-wrapper {
