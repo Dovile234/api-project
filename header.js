@@ -1,13 +1,14 @@
-export function createPageMainHeader() {
+function header() {
   const header = document.createElement("header");
   header.classList.add("header");
   const nav = document.createElement("nav");
   nav.classList.add("nav");
   const list = document.createElement("ul");
   list.classList.add("nav-list");
+  const form = document.createElement("form");
 
   document.body.prepend(header);
-  nav.append(list);
+  nav.append(list, form);
   header.append(nav);
 
   const arr = [
@@ -40,4 +41,11 @@ export function createPageMainHeader() {
 
     list.append(liElement);
   });
+
+  form.action = "./search.html";
+  form.innerHTML = `
+  <input type="text" name="search" id="search-form">
+  <input type="submit" value="Search">`;
 }
+
+export default header;

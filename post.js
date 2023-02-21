@@ -1,4 +1,5 @@
-import { createPageMainHeader } from "./header.js";
+import header from "./header.js";
+import { toUpperCase } from "./functions.js";
 
 async function getPost() {
   const urlParams = new URLSearchParams(location.search);
@@ -11,41 +12,52 @@ async function getPost() {
   );
   const post = await res.json();
   const content = document.getElementById("page-content");
+  console.log(post);
 
-  createPageMainHeader();
+  header();
 
   let comment = getComments(post.comments);
 
   let postTitle = document.createElement("h1");
-  postTitle.textContent = post.title;
+  postTitle.textContent = toUpperCase(post.title);
   let user = document.createElement("a");
   user.textContent = post.user.name;
-  user.href = post.user.website;
+  user.href = `./user.html?id=${post.userId}`;
   let postContent = document.createElement("p");
-  postContent.textContent = post.body;
+  postContent.textContent = toUpperCase(post.body);
   let link = document.createElement("a");
   link.textContent = "Other posts";
-  link.href = `./posts.html?userId=${post.userId}`;
+  link.href = `./posts.html?id=${post.userId}`;
 
-  console.log(comment);
+  let postEditLink = document.createElement("a");
+  postEditLink.textContent = "Edit Post";
+  postEditLink.href = `./edit-post.html?id=${id}`;
 
-  content.append(postTitle, user, postContent, comment, link);
+  content.append(postTitle, user, postContent, comment, link, postEditLink);
 }
 
 function getComments(comments) {
   let commentsWrap = document.createElement("div");
+  let commentsTitle = document.createElement("h2");
+  commentsTitle.textContent = "Comments:";
   commentsWrap.classList.add("comments-wrapper");
+
+  if (comments.length === 0) {
+    commentsTitle.textContent = "No comments";
+    return commentsWrap;
+  }
 
   comments.map((comment) => {
     let commentTitle = document.createElement("h3");
-    commentTitle.textContent = comment.name;
+    commentTitle.textContent = toUpperCase(comment.name);
     let commentContent = document.createElement("p");
-    commentContent.textContent = comment.body;
+    commentContent.textContent = toUpperCase(comment.body);
     let email = document.createElement("p");
     email.innerHTML = `Email: <a href=''>${comment.email}</a>`;
 
     commentsWrap.append(commentTitle, commentContent, email);
   });
+  commentsWrap.prepend(commentsTitle);
   return commentsWrap;
 }
 

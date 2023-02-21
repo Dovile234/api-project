@@ -22,13 +22,17 @@ h2 {
 }
 
 .nav {
-  max-width: 500px;
+  display: flex;
+  align-items: center;
+  max-width: 800px;
+  column-gap: 40px;
   margin: 0 auto;
 }
 
 .nav-list {
   display: flex;
   justify-content: space-between;
+  width: 400px;
 }
 
 .nav-list li {
@@ -71,7 +75,7 @@ h3 {
 
 .posts-wrapper {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   column-gap: 20px;
   row-gap: 20px;
   width: 100%;
@@ -97,4 +101,38 @@ h3 {
 
 .post-item {
   text-decoration: none;
+}
+
+.comments-wrapper {
+  margin-top: 50px;
+}
+
+.comments-wrapper h3 {
+  font-weight: 600;
+}
+
+#post-form,
+#edit-form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+  width: 500px;
+}
+
+.post-wrapper {
+  margin: 50px 0;
+}
+
+.posts-list {
+  padding: 40px 30px;
+}
+
+.users-list {
+  padding: 40px 30px;
+}
+
+#content-wrapper {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  column-gap: 50px;
 }

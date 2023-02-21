@@ -1,4 +1,5 @@
-import { createPageMainHeader } from "./header.js";
+import header from "./header.js";
+import { toUpperCase } from "./functions.js";
 
 async function getUser() {
   const urlParams = new URLSearchParams(location.search);
@@ -9,7 +10,7 @@ async function getUser() {
   const user = await res.json();
   const content = document.getElementById("page-content");
 
-  createPageMainHeader();
+  header();
 
   const userPosts = getPosts(user.posts);
   const userAlbums = getAlbums(user.albums);
@@ -48,7 +49,7 @@ async function getUser() {
   <p>Company name: ${company}</p>
   <h3>Contacts:</h3>
   <ul class="user-contacts">
-  <li class="list-item">Address: <a href="https://maps.google.com/maps/search/?api=1&query=${lat},${lng}">${address}</a></li>
+  <li class="list-item">Address: <a href="https://maps.google.com/maps/search/?api=1&query=${lat},${lng}" target="_blank">${address}</a></li>
   <li class="list-item">Phone: <a href=""> ${phone}</a></li>
   <li class="list-item">Website: <a href="">${website}</a></li>
 </ul>`;
@@ -71,8 +72,8 @@ function getPosts(posts) {
     console.log(post);
 
     userPost.innerHTML = `
-<h3>${title}</h3>
-<p>${body}</p>`;
+<h3>${toUpperCase(title)}</h3>
+<p>${toUpperCase(body)}</p>`;
     userPosts.append(userPost);
   });
   return userPosts;
@@ -88,7 +89,7 @@ function getAlbums(albums) {
     let title = album.title;
     let albumLink = document.createElement("a");
     albumLink.href = `./album.html?id=${album.id}`;
-    albumLink.textContent = title;
+    albumLink.textContent = toUpperCase(title);
     albumItem.append(albumLink);
     albumList.append(albumItem);
   });

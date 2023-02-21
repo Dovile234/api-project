@@ -1,4 +1,4 @@
-import { createPageMainHeader } from "./header.js";
+import header from "./header.js";
 
 async function init() {
   const res = await fetch(
@@ -6,7 +6,7 @@ async function init() {
   );
   const albums = await res.json();
 
-  createPageMainHeader();
+  header();
 
   if (!albums.length || albums.length === 0) {
     return;

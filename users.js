@@ -1,4 +1,4 @@
-import { createPageMainHeader } from "./header.js";
+import header from "./header.js";
 
 async function init() {
   const res = await fetch(
@@ -6,7 +6,7 @@ async function init() {
   );
   const users = await res.json();
 
-  createPageMainHeader();
+  header();
 
   const pageContent = document.querySelector("#page-content");
   const usersList = createListElement(users);
@@ -22,7 +22,7 @@ function createListElement(users) {
     const userItem = document.createElement("li");
     userItem.classList.add("user-item");
     const userLink = document.createElement("a");
-    userLink.textContent = user.name + postsCount;
+    userLink.textContent = `${user.name} (${postsCount})`;
     userLink.href = `./user.html?id=${user.id}`;
     userItem.append(userLink);
 

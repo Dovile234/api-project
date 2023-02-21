@@ -1,4 +1,5 @@
-import { createPageMainHeader } from "./header.js";
+import header from "./header.js";
+import { toUpperCase } from "./functions.js";
 
 async function getAlbum() {
   const urlParams = new URLSearchParams(location.search);
@@ -9,7 +10,7 @@ async function getAlbum() {
   const album = await res.json();
   const content = document.getElementById("page-content");
 
-  createPageMainHeader();
+  header();
   let photo = getPhoto(album.photos);
 
   let albumWrap = document.createElement("div");
@@ -18,7 +19,7 @@ async function getAlbum() {
   let { title, user } = album;
 
   let albumTitle = document.createElement("h1");
-  albumTitle.textContent = title;
+  albumTitle.textContent = toUpperCase(title);
   let name = document.createElement("a");
   name.textContent = user.name;
   name.href = `./user.html?id=${album.userId}`;
@@ -32,6 +33,7 @@ getAlbum();
 
 function getPhoto(photos) {
   let photosWrap = document.createElement("div");
+  photosWrap.setAttribute("id", "lightgallery");
 
   photos.map((photo) => {
     const photoLink = document.createElement("a");

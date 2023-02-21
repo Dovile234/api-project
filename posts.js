@@ -1,13 +1,16 @@
-import { createPageMainHeader } from "./header.js";
+import header from "./header.js";
+import { toUpperCase, getParams, fetchData } from "./functions.js";
 
 async function init() {
-  const res = await fetch(
-    "https://jsonplaceholder.typicode.com/posts?_limit=25&_expand=user"
+  const id = getParams("id");
+
+  let userParamUrl = id ? `&userId=${id}` : "";
+  const posts = await fetchData(
+    `https://jsonplaceholder.typicode.com/posts?_limit=25&_expand=user${userParamUrl}`
   );
-  const posts = await res.json();
 
   const pageContent = document.querySelector("#page-content");
-  createPageMainHeader();
+  header();
   const postsList = createPostsListElement(posts);
   pageContent.append(postsList);
 }
@@ -23,7 +26,7 @@ function createPostsListElement(posts) {
     postItem.classList.add("post-item");
 
     const postLink = document.createElement("a");
-    postLink.textContent = post.title;
+    postLink.textContent = toUpperCase(post.title);
     postLink.href = `./post.html?id=${post.id}`;
 
     const postAuthor = document.createElement("a");
